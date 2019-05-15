@@ -1,2 +1,1 @@
-# Solar
-from cmdb
+solar for gexin

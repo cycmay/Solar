@@ -1,0 +1,21 @@
+发送时间：2019-04-15 15:24:15 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  not a valid non-string sequence or mapping object 
+发送时间：2019-04-15 15:27:41 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  not a valid non-string sequence or mapping object 
+发送时间：2019-04-15 15:29:38 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  not a valid non-string sequence or mapping object 
+发送时间：2019-04-15 15:30:04 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  HTTP Error 404: Not Found 
+发送时间：2019-04-15 15:30:30 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  HTTP Error 404: Not Found 
+发送时间：2019-04-15 15:30:46 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  not a valid non-string sequence or mapping object 
+发送时间：2019-04-15 15:31:41 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  not a valid non-string sequence or mapping object 
+发送时间：2019-04-15 15:33:00 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  HTTP Error 404: Not Found 
+发送时间：2019-04-15 15:40:45 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：发送失败   错误原因：  HTTP Error 403: Forbidden 
+发送时间：2019-04-15 15:43:10 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：成功收到数据！ 
+发送时间：2019-04-16 09:45:58 	 服务器地址：http://192.168.0.100:8000/assets/report/ 	 返回结果：资产已经加入或者更新待审批区域！ 
+发送时间：2019-05-05 19:52:42 	 服务器地址：http://127.0.0.1:8000/assets/report/ 	 返回结果：资产已经加入或者更新待审批区域！ 
+发送时间：2019-05-16 01:53:39 	 服务器地址：http://127.0.0.1:8000/assets/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 01:56:13 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 01:58:01 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 02:14:39 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 02:18:05 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 02:22:23 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 02:24:33 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 02:25:21 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：没有资产sn，请检查数据内容！ 
+发送时间：2019-05-16 02:26:19 	 服务器地址：http://127.0.0.1:8000/solar/report/ 	 返回结果：发送失败   错误原因：  HTTP Error 500: Internal Server Error 
