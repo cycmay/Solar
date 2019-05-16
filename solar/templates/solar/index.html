@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}资产总表{% endblock %}
+{% block title %}Solar总表{% endblock %}
 
 {% block css %}
      <link rel="stylesheet" href="{% static 'adminlet-2.4.10/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
@@ -10,12 +10,12 @@
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        资产总表
-        <small>assets list</small>
+        Solar总表
+        <small>solar list</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li class="active">资产总表</li>
+        <li class="active">Solar总表</li>
       </ol>
     </section>
 {% endblock %}
@@ -29,7 +29,7 @@
 
         <div class="box">
         <div class="box-header">
-          <h3 class="box-title">资产总表<small>(不含软件)</small></h3>
+          <h3 class="box-title">solar总表</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -37,72 +37,51 @@
             <table id="assets_table" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>序号</th>
-                        <th>资产类型</th>
-                        <th>子类型</th>
-                        <th>资产名称</th>
-                        <th>SN</th>
-                        <th>业务线</th>
-                        <th>状态</th>
-                        <th>机房</th>
+                        <th>灯杆号</th>
+                        <th>太阳能板电压(V)</th>
+                        <th>太阳能板电流(A)</th>
+                        <th>蓄电池电压(V)</th>
+                        <th>充电工作状态</th>
+                        <th>负载电流（A）</th>
+                        <th>负载电压(V)</th>
+                        <th>开灯状态</th>
+                        <th>工作时间(Min)</th>
+                        <th>累计电量(Kwh)</th>
                         <th>更新日期</th>
-                        <th>标签</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                {% for asset in assets %}
+                {% for solar in solars %}
 
                     <tr>
-                        <td>{{ forloop.counter }}</td>
+                        <!-- <td>{{ forloop.counter }}</td> -->
+                        <td class="text-green text-bold">{{ solar.number }}</td>
 
-                        {% if asset.asset_type == 'server' %}
-                          <td class="text-green text-bold">{{ asset.get_asset_type_display }}</td>
-                          <td>{{ asset.server.get_sub_asset_type_display }}</td>
-                        {% elif asset.asset_type == "networkdevice" %}
-                          <td class="text-yellow text-bold">{{ asset.get_asset_type_display }}</td>
-                          <td>{{ asset.networkdevice.get_sub_asset_type_display }}</td>
-                        {% elif asset.asset_type == "storagedevice" %}
-                          <td class="text-blue text-bold">{{ asset.get_asset_type_display }}</td>
-                          <td>{{ asset.storagedevice.get_sub_asset_type_display }}</td>
-                        {% elif asset.asset_type == "securitydevice" %}
-                          <td class="text-red text-bold">{{ asset.get_asset_type_display }}</td>
-                          <td>{{ asset.securitydevice.get_sub_asset_type_display }}</td>
+                        <td>{{ solar.s_voltage }}</td>
+                        <td>{{ solar.s_current }}</td>
+                        <td>{{ solar.b_voltage }}</td>
+
+                        {% if solar.charging_status == 1 %}
+                          <td><label class="label label-success">在线</label></td>
+                        {% elif solar.charging_status == 0 %}
+                          <td><label class="label label-warning">下线</label></td>
                         {% endif %}
 
-                        {% if asset.asset_type == 'server' %}
-                            <td><a href="{% url 'assets:detail' asset.id %}">{{ asset.name }}</a></td>
-                        {% else %}
-                            <td>{{ asset.name }}</td>
+                        <td>{{ solar.load_current }}</td>
+                        <td>{{ solar.load_voltage }}</td>
+
+                        {% if solar.lamp_status == 1 %}
+                          <td><label class="label label-success">在线</label></td>
+                        {% elif solar.lamp_status == 0 %}
+                          <td><label class="label label-warning">下线</label></td>
                         {% endif %}
 
-                        <td>{{ asset.sn }}</td>
+                        <td>{{ solar.work_time }}</td>
+                        <td>{{ solar.cumulative_power }}</td>
 
-                        <td>{{ asset.business_unit|default_if_none:"-" }}</td>
+                        <td>{{ solar.c_time|date:"Y/m/d [H:m:s]" }}</td>
 
-                        {% if asset.status == 0 %}
-                          <td><label class="label label-success">{{ asset.get_status_display }}</label></td>
-                        {% elif asset.status == 1 %}
-                          <td><label class="label label-warning">{{ asset.get_status_display }}</label></td>
-                        {% elif asset.status == 2 %}
-                          <td><label class="label label-default">{{ asset.get_status_display }}</label></td>
-                        {% elif asset.status == 3 %}
-                          <td><label class="label label-danger">{{ asset.get_status_display }}</label></td>
-                        {% elif asset.status == 4 %}
-                          <td><label class="label label-info">{{ asset.get_status_display }}</label></td>
-                        {% endif %}
-
-                        <td>{{ asset.idc|default:"-" }}</td>
-
-                        <td>{{ asset.m_time|date:"Y/m/d [H:m:s]" }}</td>
-
-                        <td>
-                          {% for tag in asset.tags.all %}
-                            <label class="label label-primary">{{ tag.name }}</label>
-                            {% empty %}
-                              -
-                            {% endfor %}
-                        </td>
                     </tr>
 
                 {% empty %}
@@ -110,20 +89,7 @@
                 {% endfor %}
 
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>序号</th>
-                        <th>资产类型</th>
-                        <th>子类型</th>
-                        <th>资产名称</th>
-                        <th>SN</th>
-                        <th>业务线</th>
-                        <th>状态</th>
-                        <th>机房</th>
-                        <th>更新日期</th>
-                        <th>标签</th>
-                    </tr>
-                </tfoot>
+
             </table>
         </div>
         <!-- /.box-body -->

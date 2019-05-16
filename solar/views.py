@@ -11,13 +11,21 @@ from django.shortcuts import get_object_or_404
 
 ATYPE = "09"    # 传输数据为数据报格式
 
+def index(request):
+    """
+    总表视图
+    :param request:
+    :return:
+    """
+    solars = models.Solar.objects.order_by("-c_time")[:2]
+    return render(request, 'solar/index.html', locals())
 
 @csrf_exempt
 def report(request):
     if request.method == 'POST':
         asset_data = request.POST.get('client_data')
         data = json.loads(asset_data)
-        print(data)
+        # print(data)
         if not data:
             return HttpResponse('没有数据！')
         if not issubclass(dict, type(data)):

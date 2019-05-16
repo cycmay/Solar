@@ -12,7 +12,7 @@ Params = {
 
 # 日志文件配置
 
-PATH = os.path.join(os.path.dirname(os.getcwd()), 'log', 'cmdb.log')
+PATH = os.path.join(os.path.dirname(os.getcwd()), 'log', 'SolarS.log')
 
 
 # 更多配置，请都集中在此文件中

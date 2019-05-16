@@ -1,5 +1,5 @@
 from django.urls import path
-from assets import views
+from solar import views
 
 
 app_name = 'solar'
@@ -7,8 +7,8 @@ app_name = 'solar'
 
 urlpatterns = [
     path('report/', views.report, name='report'),
-    path('dashboard/', views.dashboard, name='dashboard'),
+    # path('dashboard/', views.dashboard, name='dashboard'),
     path('index/', views.index, name='index'),
-    path('detail/<int:solar_id>/', views.detail, name='detail'),
-    path('', views.dashboard),
+    # path('detail/<int:solar_id>/', views.detail, name='detail'),
+    # path('', views.dashboard),
 ]
