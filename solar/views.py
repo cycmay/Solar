@@ -1,15 +1,20 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.views import APIView
+from django.db.models import Count
 # Create your views here.
 import json
+
 from solar import models
 from solar import solar_handlers
+from .json_api import JsonResponse, JsonError
 
 from django.shortcuts import get_object_or_404
 
 
 ATYPE = "09"    # 传输数据为数据报格式
+
 
 def index(request):
     """
@@ -17,8 +22,34 @@ def index(request):
     :param request:
     :return:
     """
-    solars = models.Solar.objects.order_by("-c_time")[:2]
+    solars = []
+    # 检索数据库灯杆号
+    numb = []
+    for queryset in models.Solar.objects.values("number").annotate(Count=Count('number')).order_by():
+        numb.append(queryset["number"])
+    for num in numb:
+        solar = models.Solar.objects.filter(number=num).order_by("-c_time")[0]
+        solars.append(solar)
     return render(request, 'solar/index.html', locals())
+
+
+def dashboard(request):
+    return render(request, 'solar/dashboard.html')
+
+
+class ReturnSolar(APIView):
+
+    def get(self, request, *args, **kwargs):
+        solars = []
+        # 检索数据库灯杆号
+        numb = []
+        for queryset in models.Solar.objects.values("number").annotate(Count=Count('number')).order_by():
+            numb.append(queryset["number"])
+        for num in numb:
+            solar = models.Solar.objects.filter(number=num).order_by("-c_time")[0]
+            solars.append(solar)
+        return JsonResponse(solars)
+
 
 @csrf_exempt
 def report(request):

@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import socket
+import sys
 
 # client 端参数
 host = "127.0.0.1"
@@ -13,6 +14,7 @@ address = (host, port)
 # test_str.encode().hex()
 # print(test_str)
 
+
 def collect():
     """
 
@@ -21,17 +23,34 @@ def collect():
     """
     # 使用连接函数 connect 连接到该 IP 的特定的端口
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(address)
+    print("Socket created.")
+    try:
+        server_socket.bind(address)
+        print("Socket Bind complete.")
+    except socket.error as msg:
+        print("Bind faild. Error Code: " + str(msg[0]) + "Message: " + msg[1])
+        sys.exit()
     server_socket.listen(5)
+    print("socket listening now!")
+
 
     # wait to accept a connection - blocking call
     conn, addr = server_socket.accept()
-    # receive data
-    data = conn.recv(1024)
-
-    # bytes对象的hex()方法可以输出直接十六进制形式的
-    data = data.hex()
-    return format_data(data)
+    print("Connected with " + addr[0] + ":" + str(addr[1]))
+    while True:
+        # receive data
+        data = conn.recv(1024)
+        if not data:
+            break
+        # bytes对象的hex()方法可以输出直接十六进制形式的
+        data = data.hex()
+        # 格式化
+        data = format_data(data)
+        print(data)
+        yield data
+    conn.close()
+    server_socket.close()
+    return
 
 # 数据报格式化
 def format_data(info):
@@ -103,7 +122,7 @@ if __name__ == "__main__":
     # 收集信息功能测试
     # data = collect()
     # print(data)
-
+    collect()
     # 解析数据报功能测试
     # data = format_data(test_str)
     # print(data)

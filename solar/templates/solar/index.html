@@ -63,18 +63,18 @@
                         <td>{{ solar.b_voltage }}</td>
 
                         {% if solar.charging_status == 1 %}
-                          <td><label class="label label-success">在线</label></td>
+                          <td><label class="label label-success">开</label></td>
                         {% elif solar.charging_status == 0 %}
-                          <td><label class="label label-warning">下线</label></td>
+                          <td><label class="label label-warning">关</label></td>
                         {% endif %}
 
                         <td>{{ solar.load_current }}</td>
                         <td>{{ solar.load_voltage }}</td>
 
                         {% if solar.lamp_status == 1 %}
-                          <td><label class="label label-success">在线</label></td>
+                          <td><label class="label label-success">开</label></td>
                         {% elif solar.lamp_status == 0 %}
-                          <td><label class="label label-warning">下线</label></td>
+                          <td><label class="label label-warning">关</label></td>
                         {% endif %}
 
                         <td>{{ solar.work_time }}</td>
