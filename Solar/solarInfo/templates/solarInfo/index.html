@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Solar总表{% endblock %}
+{% block title %}太阳能路灯监控系统{% endblock %}
 
 {% block css %}
      <link rel="stylesheet" href="{% static 'adminlet-2.4.10/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
@@ -10,12 +10,12 @@
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Solar总表
+        路灯信息
         <small>solar list</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li class="active">Solar总表</li>
+        <li class="active">路灯状态表</li>
       </ol>
     </section>
 {% endblock %}
@@ -29,7 +29,7 @@
 
         <div class="box">
         <div class="box-header">
-          <h3 class="box-title">solar总表</h3>
+          <h3 class="box-title">信息总表</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">

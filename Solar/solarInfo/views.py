@@ -39,7 +39,7 @@ def detail(request):
     :param request:
     :return:
     """
-    solars = models.Solar.objects.all()[:200]
+    solars = models.Solar.objects.all().order_by("-c_time")[:200]
     return render(request, 'solarInfo/detail.html', locals())
 
 

@@ -14,6 +14,7 @@ address = (host, port)
 # test_str.encode().hex()
 # print(test_str)
 
+SOLARTYPE = "09"
 
 def collect():
     """
@@ -72,7 +73,9 @@ def format_data(info):
         "length": int(info[4:8], 16),     # 长度
         "identity": info[8:30],  # 身份码
     }
-
+    if not header["type"] == SOLARTYPE:
+        # 收到的不是数据 报警
+        return
     # 数据详细信息
     body = {
         "starter": info[30:32],     # 0x68（首部）
