@@ -3,20 +3,19 @@
 {% block title %}资产详细{% endblock %}
 
 {% block css %}
-
+    <link rel="stylesheet" href="{% static 'adminlet-2.4.10/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
 {% endblock %}
 
 {% block breadcrumb %}
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        资产详细
+        日志详细
         <small>asset info</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li>资产总表</li>
-        <li class="active">资产详细</li>
+        <li><a href="/index"><i class="fa fa-dashboard"></i> 主页</a></li>
+        <li class="active">日志详细</li>
       </ol>
     </section>
 {% endblock %}
@@ -26,9 +25,83 @@
      <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
+      <div class="row">
+        <div class="col-xs-12">
 
+        <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">solar总表</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <table id="assets_table" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>灯杆号</th>
+                        <th>太阳能板电压(V)</th>
+                        <th>太阳能板电流(A)</th>
+                        <th>蓄电池电压(V)</th>
+                        <th>充电工作状态</th>
+                        <th>负载电流（A）</th>
+                        <th>负载电压(V)</th>
+                        <th>开灯状态</th>
+                        <th>工作时间(Min)</th>
+                        <th>累计电量(Kwh)</th>
+                        <th>更新日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                {% for solar in solars %}
+
+                    <tr>
+                        <!-- <td>{{ forloop.counter }}</td> -->
+                        <td class="text-green text-bold">
+                            <a href="{% url 'solarInfo:dashboard' solar.number %}">{{ solar.number }}</a>
+                        </td>
+
+                        <td>{{ solar.s_voltage }}</td>
+                        <td>{{ solar.s_current }}</td>
+                        <td>{{ solar.b_voltage }}</td>
+
+                        {% if solar.charging_status == 1 %}
+                          <td><label class="label label-success">开</label></td>
+                        {% elif solar.charging_status == 0 %}
+                          <td><label class="label label-warning">关</label></td>
+                        {% endif %}
+
+                        <td>{{ solar.load_current }}</td>
+                        <td>{{ solar.load_voltage }}</td>
+
+                        {% if solar.lamp_status == 1 %}
+                          <td><label class="label label-success">开</label></td>
+                        {% elif solar.lamp_status == 0 %}
+                          <td><label class="label label-warning">关</label></td>
+                        {% endif %}
+
+                        <td>{{ solar.work_time }}</td>
+                        <td>{{ solar.cumulative_power }}</td>
+
+                        <td>{{ solar.c_time|date:"Y/m/d [H:m:s]" }}</td>
+
+                    </tr>
+
+                {% empty %}
+                <tr>没有数据</tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
       <!-- /.box -->
+        </div>
+    <!-- /.col -->
+      </div>
+    <!-- /.row -->
 
     </section>
     <!-- /.content -->
@@ -37,5 +110,21 @@
 {% endblock %}
 
 {% block script %}
+<script src="{% static 'adminlet-2.4.10/bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'adminlet-2.4.10/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
 
+<script>
+
+$(function () {
+        $('#assets_table').DataTable({
+          "paging": true,       <!-- 允许分页 -->
+          "lengthChange": true, <!-- 允许改变每页显示的行数 -->
+          "searching": true,    <!-- 允许内容搜索 -->
+          "ordering": true,     <!-- 允许排序 -->
+          "info": true,         <!-- 显示信息 -->
+          "autoWidth": false    <!-- 固定宽度 -->
+        });
+      });
+
+</script>
 {% endblock %}

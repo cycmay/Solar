@@ -49,7 +49,7 @@
                   <div class="row">
 
                     <div class="col-xs-6 col-md-2 col-md-offset-1 text-center">
-                      <input type="text" class="knob" value=" " data-width="90" data-height="90" data-fgColor="#00a65a" data-readonly="true">
+                      <input type="text" class="knob" value="100" data-width="90" data-height="90" data-fgColor="#00a65a" data-readonly="true">
 
                       <div class="knob-label">在线</div>
                     </div>
@@ -109,7 +109,61 @@
           </div>
           <!-- /.box -->
         </div>
-        <!-- /.col (RIGHT) -->
+        <div class="col-md-6">
+            <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">蓄电池电压统计：</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+                 <div id="b_voltage" style="min-width:400px;height:400px"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+         <div class="col-md-6">
+            <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">负载电流统计：</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+                 <div id="load_current" style="min-width:400px;height:400px"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+         <div class="col-md-6">
+            <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">负载电压统计：</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+                 <div id="load_voltage" style="min-width:400px;height:400px"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+          <!-- /.col (RIGHT) -->
       </div>
       <!-- /.row -->
     </section>

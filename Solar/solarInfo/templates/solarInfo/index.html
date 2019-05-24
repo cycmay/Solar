@@ -56,7 +56,9 @@
 
                     <tr>
                         <!-- <td>{{ forloop.counter }}</td> -->
-                        <td class="text-green text-bold">{{ solar.number }}</td>
+                        <td class="text-green text-bold">
+                            <a href="{% url 'solarInfo:dashboard' solar.number %}">{{ solar.number }}</a>
+                        </td>
 
                         <td>{{ solar.s_voltage }}</td>
                         <td>{{ solar.s_current }}</td>

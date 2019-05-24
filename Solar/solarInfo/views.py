@@ -33,6 +33,17 @@ def index(request):
     return render(request, 'solarInfo/index.html', locals())
 
 
+def detail(request):
+    """
+    日志视图
+    :param request:
+    :return:
+    """
+    solars = models.Solar.objects.all()[:200]
+    return render(request, 'solarInfo/detail.html', locals())
+
+
+
 def dashboard(request, number):
     solar = models.Solar.objects.filter(number=number).order_by("-c_time")[0]
     context = {
