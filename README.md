@@ -52,7 +52,7 @@
 
 3.  展示图
 
-   ![index] (https://github.com/cycmay/SolarS/tools/images/541ALR8HN.png "index")
+   ![index] (https://github.com/cycmay/SolarS/blob/master/tools/images/541ALR8HN.png "index")
 
 
 
