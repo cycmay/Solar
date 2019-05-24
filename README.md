@@ -52,7 +52,7 @@
 
 3.  展示图
 
-   ![index] (./tools/images/541ALR8HN]1UOF%[9@L1SPI.png "index")
+   ![index] (./tools/images/541ALR8HN.png "index")
 
 
 
